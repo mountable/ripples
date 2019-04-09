@@ -17,7 +17,7 @@ Using `MutationObserver` to observe the DOM tree for insertion/removal of elemen
 
 ``` html
 <!-- Copy and paste the script below into the bottom of your HTML body element -->
-<script type="text/javascript" href="https://unpkg.com/@knekk/ripples@0.0.2/dist/ripples.js"></script>
+<script type="text/javascript" href="https://unpkg.com/@knekk/ripples@0.0.3/dist/ripples.js"></script>
 ```
 
 ### Vue.js
@@ -33,7 +33,7 @@ The ripple effect is applied to all elements with the `ripple` attribute:
 <div ripple>Click on me</div>
 ```
 
-You can also set the `ripple` color yourself by specifying the color value to the `ripple` attribute. It supports all `<color>` values (see: [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value "MDN web docs - <color>") for more information):
+You can also set the ripple color yourself by specifying the color value to the `ripple` attribute. It supports all `<color>` values (see: [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value "MDN web docs - <color>") for more information):
 ``` html
 <!-- 'red' ripple color using color keyword -->
 <div ripple="red">Click on me</div>
@@ -45,7 +45,7 @@ You can also set the `ripple` color yourself by specifying the color value to th
 <div ripple="rgb(0,0,255)"></div>
 ```
 
-> **Caution:** The ripple effect is not working properly with `inline` elements. If an `inline` element is registering the `ripple` effect, the element is converted to an `inline-block` element instead.
+> **Caution:** The ripple effect is not working properly with `inline` elements. If an `inline` element is registered with the ripple effect, the element is converted to an `inline-block` element.
 
 ### Vue.js
 

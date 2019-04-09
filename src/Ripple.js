@@ -50,6 +50,7 @@ export default class Ripple {
         ripple.children[0].style.opacity = 0;
         setTimeout(() => {
             ripple.parentNode && ripple.parentNode.removeChild(ripple);
+            self.active.splice(self.active.indexOf(ripple), 1);
         }, 300);
     }
 
