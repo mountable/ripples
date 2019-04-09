@@ -1,29 +1,26 @@
-# ripples
+# Dev Components { Ripples }
 
-## Project setup
-```
-npm install
-```
+Ripple effect which provides an "ink ripple" like effect to an interacted element. 
+Apply to any element with a simple setup.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Installation
 
-### Compiles and minifies for production
-```
-npm run build
-```
+> Coming soon
 
-### Run your tests
-```
-npm run test
-```
+### HTML
 
-### Lints and fixes files
-```
-npm run lint
-```
+> Coming soon
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Vue.js
+
+> Coming soon
+
+## Configuration
+
+> Coming soon
+
+## License
+
+[MIT](http://opensource.org/licenses/MIT)
+
+Copyright (c) 2019-present, Kenneth Aamås

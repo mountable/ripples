@@ -1,10 +1,25 @@
 {
-  "name": "ripples",
-  "version": "0.1.0",
-  "private": true,
+  "name": "@knekk/ripples",
+  "version": "0.0.1",
+  "description": "Ripple effect which provides an \"ink ripple\" like effect to an interacted element.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/knekki/ripples.git"
+  },
+  "author": "Kenneth Aamås",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/knekki/ripples/issues"
+  },
+  "homepage": "https://github.com/knekki/ripples#readme",
+  "files": [
+    "dist/*.js",
+    "src"
+  ],
+  "main": "src/index.js",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build --no-clean",
+    "build:min": "webpack --config webpack.config.js"
   },
   "dependencies": {
     "core-js": "^2.6.5",
@@ -13,9 +28,13 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.5.0",
     "@vue/cli-service": "^3.5.0",
+    "babel-minify-webpack-plugin": "^0.3.1",
+    "clean-webpack-plugin": "^2.0.1",
     "fibers": "^3.1.1",
     "sass": "^1.17.2",
     "sass-loader": "^7.1.0",
-    "vue-template-compiler": "^2.5.21"
+    "vue-template-compiler": "^2.5.21",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
   }
 }
