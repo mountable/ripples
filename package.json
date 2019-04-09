@@ -1,7 +1,7 @@
 {
   "name": "@knekk/ripples",
-  "version": "0.0.1",
-  "description": "Ripple effect which provides an \"ink ripple\" like effect to an interacted element.",
+  "version": "0.0.2",
+  "description": "Ripple effect - Provides a 'ink ripple' like effect to an interacted element - Simple setup and usage.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/knekki/ripples.git"
@@ -20,10 +20,6 @@
   "scripts": {
     "build": "vue-cli-service build --no-clean",
     "build:min": "webpack --config webpack.config.js"
-  },
-  "dependencies": {
-    "core-js": "^2.6.5",
-    "vue": "^2.6.6"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.5.0",

@@ -4,7 +4,7 @@ export default class Ripple {
         if (!(element instanceof HTMLElement)) throw new Error('Can only construct Ripple with an instance of HTMLElement.');
 
         this.el = element;
-        this.color = color || element.getAttribute('ripple') || this.getRippleColorLegibility();
+        this.color = this.setColor(color);
         this.active = [];
 
         this.bind();
@@ -22,7 +22,7 @@ export default class Ripple {
                 this.el.dataset.prevDisplay = 'inline';
                 this.el.style.display = 'inline-block';
             }
-        } else return;
+        }
         
         this.el.addEventListener('mousedown', this.show);
         this.el.addEventListener('touchstart', this.show, { passive: true });
@@ -55,6 +55,11 @@ export default class Ripple {
 
     remove() {
         return RippleRegister.remove(this);
+    }
+
+    setColor(color) {
+        this.color = color || this.el.getAttribute('ripple') || this.getRippleColorLegibility();
+        return this.color;
     }
 
     show(event) {
