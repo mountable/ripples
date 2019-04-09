@@ -14,6 +14,7 @@ const observer = new MutationObserver((mutationsList) => {
 
         else if (mutation.type == 'attributes') {
             mutation.attributeName == 'ripple' && RippleRegister.has(mutation.target) && RippleRegister.get(mutation.target).setColor(mutation.target.getAttribute('ripple'));
+            mutation.attributeName == 'ripple-out' && RippleRegister.has(mutation.target) && RippleRegister.get(mutation.target).setColorOut(mutation.target.getAttribute('ripple-out'));
         }
     }
 });

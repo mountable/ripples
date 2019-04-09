@@ -1,3 +1,9 @@
+<p align="center">
+    <a href="https://npmcharts.com/compare/@knekk/ripples?minimal=true"><img src="https://img.shields.io/npm/dm/@knekk/ripples.svg" alt="Downloads"></a>
+    <a href="https://www.npmjs.com/package/@knekk/ripples"><img src="https://img.shields.io/npm/v/@knekk/ripples.svg" alt="Version"></a>
+    <a href="https://www.npmjs.com/package/@knekk/ripples"><img src="https://img.shields.io/npm/l/@knekk/ripples.svg" alt="License"></a>
+</p>
+
 # Dev Components { Ripples }
 
 Ripple effect which provides an "ink ripple" like effect to an interacted element. 
@@ -17,7 +23,7 @@ Using `MutationObserver` to observe the DOM tree for insertion/removal of elemen
 
 ``` html
 <!-- Copy and paste the script below into the bottom of your HTML body element -->
-<script type="text/javascript" href="https://unpkg.com/@knekk/ripples@0.0.3/dist/ripples.js"></script>
+<script type="text/javascript" href="https://unpkg.com/@knekk/ripples@0.0.4/dist/ripples.js"></script>
 ```
 
 ### Vue.js
@@ -30,16 +36,16 @@ Using `MutationObserver` to observe the DOM tree for insertion/removal of elemen
 
 The ripple effect is applied to all elements with the `ripple` attribute:
 ``` html
-<div ripple>Click on me</div>
+<div ripple>Click me</div>
 ```
 
 You can also set the ripple color yourself by specifying the color value to the `ripple` attribute. It supports all `<color>` values (see: [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value "MDN web docs - <color>") for more information):
 ``` html
 <!-- 'red' ripple color using color keyword -->
-<div ripple="red">Click on me</div>
+<div ripple="red">Click me</div>
 
 <!-- 'green' ripple color using hex-value -->
-<div ripple="#008000">Click on me</div>
+<div ripple="#008000">Click me</div>
 
 <!-- 'blue' ripple color using rgb() -->
 <div ripple="rgb(0,0,255)"></div>
@@ -51,9 +57,47 @@ You can also set the ripple color yourself by specifying the color value to the 
 
 > Coming soon
 
-## Configuration
+## Advanced usage
 
-> Coming soon
+### Color transitioning with `ripple-out`
+
+If you want the ripple effect to have a color transitioning effect when it 'ripples' out, just specify the out color with the `ripple-out` attribute on the element. The ripple effect will then start off with the initial ripple color, and ripple out (transition) into the new color on interaction:
+``` html
+<div ripple="blue" ripple-out="purple">Click me</div>
+```
+
+### Manually register/unregister ripples
+
+You can manually register ripple effects on elements with `RippleRegister.add`:
+``` javascript
+// RippleRegister.add(HTMLElement, config)
+window.RippleRegister.add(document.body.querySelector('#id'));
+
+// or with a config
+window.RippleRegister.add(document.body.querySelector('#id'), {
+    color: 'blue'
+});
+```
+
+To remove and unregister a ripple, use `RippleRegister.remove`:
+``` javascript
+// RippleRegister.remove(HTMLElement|RippleInstance)
+window.RippleRegister.remove(document.body.querySelector('#id'));
+
+// or by a Ripple instance
+const ripple = window.RippleRegister.add(document.body.querySelector('#id'));
+window.RippleRegister.remove(ripple); 
+```
+
+The `Ripple` instance also exposes its own `.remove` method:
+``` javascript
+const ripple = window.RippleRegister.add(document.body.querySelector('#id'));
+ripple.remove();
+```
+
+## Looking for more?
+Dev Components
+* [{ Spinners }](https://github.com/knekki/spinners "Pure CSS Spinners by Kenneth Aamås")
 
 ## License
 

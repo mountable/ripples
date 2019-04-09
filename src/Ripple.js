@@ -1,10 +1,11 @@
 export default class Ripple {
-    constructor(element, { color } = {}) {
+    constructor(element, { color, colorOut } = {}) {
         if (RippleRegister.has(element)) return RippleRegister.get(element);
         if (!(element instanceof HTMLElement)) throw new Error('Can only construct Ripple with an instance of HTMLElement.');
 
         this.el = element;
         this.color = this.setColor(color);
+        this.colorOut = this.setColorOut(colorOut);
         this.active = [];
 
         this.bind();
@@ -63,6 +64,11 @@ export default class Ripple {
         return this.color;
     }
 
+    setColorOut(color) {
+        this.colorOut = color || this.el.getAttribute('ripple-out') || this.color || this.getRippleColorLegibility();
+        return this.colorOut;
+    }
+
     show(event) {
         if (this.getAttribute('disabled') != null) return;
         const self = RippleRegister.get(this);
@@ -97,7 +103,7 @@ export default class Ripple {
             background: self.getRippleColorLegibility(),
             backgroundColor: self.color,
             transform: 'scale(0)',
-            transition: 'transform 300ms ease-out, opacity 300ms ease-out',
+            transition: 'transform 300ms ease-out, opacity 300ms ease-out, background 300ms ease-in',
             willChange: 'transform, opacity'
         });
 
@@ -105,9 +111,11 @@ export default class Ripple {
         ripple.appendChild(rippleEffect);
         this.appendChild(ripple);
         self.active.push(ripple);
-        
         setTimeout(() => {
             rippleEffect.style.transform = "scale(1)";
+
+            // If 'ripple-out' is set, transition to color out
+            if (self.color != self.colorOut) rippleEffect.style.backgroundColor = self.colorOut;
         }, 0);
     }
 
