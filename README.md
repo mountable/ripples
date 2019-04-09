@@ -23,7 +23,7 @@ Using `MutationObserver` to observe the DOM tree for insertion/removal of elemen
 
 ``` html
 <!-- Copy and paste the script below into the bottom of your HTML body element -->
-<script type="text/javascript" href="https://unpkg.com/@knekk/ripples@0.0.4/dist/ripples.js"></script>
+<script type="text/javascript" href="https://unpkg.com/@knekk/ripples@0.0.6/dist/ripples.js"></script>
 ```
 
 ### Vue.js
@@ -81,7 +81,7 @@ window.RippleRegister.add(document.body.querySelector('#id'), {
 
 To remove and unregister a ripple, use `RippleRegister.remove`:
 ``` javascript
-// RippleRegister.remove(HTMLElement|RippleInstance)
+// RippleRegister.remove(HTMLElement|Ripple)
 window.RippleRegister.remove(document.body.querySelector('#id'));
 
 // or by a Ripple instance
