@@ -15,15 +15,13 @@ Using `MutationObserver` to observe the DOM tree for insertion/removal of elemen
 
 ## Installation
 
-`@knekki/ripples` is easy to setup. Just add the provided script in your HTML body element (or install via `npm`), and use it on a single HTML element by applying the `ripple` attribute to it. 
-
-> Import and use as a Vue directive coming soon.
+Add the provided script in your HTML body element (or install via `npm`), and use it on a single HTML element by applying the `data-ripple` attribute to it. 
 
 ### HTML
 
 ``` html
 <!-- Copy and paste the script below into the bottom of your HTML body element -->
-<script type="text/javascript" href="https://unpkg.com/@knekk/ripples@0.0.6/dist/ripples.js"></script>
+<script type="text/javascript" href="https://unpkg.com/@knekk/ripples@0.0.7/dist/ripples.js"></script>
 ```
 
 ### Vue.js
@@ -34,21 +32,21 @@ Using `MutationObserver` to observe the DOM tree for insertion/removal of elemen
 
 ### HTML
 
-The ripple effect is applied to all elements with the `ripple` attribute:
+The ripple effect is applied to all elements with the `data-ripple` attribute:
 ``` html
-<div ripple>Click me</div>
+<div data-ripple>Click me</div>
 ```
 
-You can also set the ripple color yourself by specifying the color value to the `ripple` attribute. It supports all `<color>` values (see: [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value "MDN web docs - <color>") for more information):
+You can also set the ripple color yourself by specifying the color value to the `data-ripple` attribute. It supports all `<color>` values (see: [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value "MDN web docs - <color>") for more information):
 ``` html
 <!-- 'red' ripple color using color keyword -->
-<div ripple="red">Click me</div>
+<div data-ripple="red">Click me</div>
 
 <!-- 'green' ripple color using hex-value -->
-<div ripple="#008000">Click me</div>
+<div data-ripple="#008000">Click me</div>
 
 <!-- 'blue' ripple color using rgb() -->
-<div ripple="rgb(0,0,255)"></div>
+<div data-ripple="rgb(0,0,255)">Click me</div>
 ```
 
 > **Caution:** The ripple effect is not working properly with `inline` elements. If an `inline` element is registered with the ripple effect, the element is converted to an `inline-block` element.
@@ -58,13 +56,6 @@ You can also set the ripple color yourself by specifying the color value to the 
 > Coming soon
 
 ## Advanced usage
-
-### Color transitioning with `ripple-out`
-
-If you want the ripple effect to have a color transitioning effect when it 'ripples' out, just specify the out color with the `ripple-out` attribute on the element. The ripple effect will then start off with the initial ripple color, and ripple out (transition) into the new color on interaction:
-``` html
-<div ripple="blue" ripple-out="purple">Click me</div>
-```
 
 ### Manually register/unregister ripples
 
@@ -93,6 +84,13 @@ The `Ripple` instance also exposes its own `.remove` method:
 ``` javascript
 const ripple = window.RippleRegister.add(document.body.querySelector('#id'));
 ripple.remove();
+```
+
+### Color transitioning with `data-ripple-out`
+
+If you want the ripple effect to have a color transitioning effect when it 'ripples' out, just specify the out color with the `data-ripple-out` attribute on the element. The ripple effect will then start off with the initial ripple color, and ripple out (transition) into the new color on interaction:
+``` html
+<div data-ripple="blue" data-ripple-out="purple">Click me</div>
 ```
 
 ## Looking for more?

@@ -60,12 +60,12 @@ export default class Ripple {
     }
 
     setColor(color) {
-        this.color = color || this.el.getAttribute('ripple') || this.getRippleColorLegibility();
+        this.color = color || this.el.dataset.ripple || this.getRippleColorLegibility();
         return this.color;
     }
 
     setColorOut(color) {
-        this.colorOut = color || this.el.getAttribute('ripple-out') || this.color || this.getRippleColorLegibility();
+        this.colorOut = color || this.el.dataset.rippleOut || this.color || this.getRippleColorLegibility();
         return this.colorOut;
     }
 
