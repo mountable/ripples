@@ -21,7 +21,7 @@ Add the provided script in your HTML body element (or install via `npm`), and us
 
 ``` html
 <!-- Copy and paste the script below into the bottom of your HTML body element -->
-<script type="text/javascript" href="https://unpkg.com/@knekk/ripples@0.0.7/dist/ripples.js"></script>
+<script type="text/javascript" href="https://unpkg.com/@knekk/ripples@0.0.8/dist/ripples.js"></script>
 ```
 
 ### Vue.js
