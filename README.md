@@ -4,7 +4,7 @@
     <a href="https://www.npmjs.com/package/@knekk/ripples"><img src="https://img.shields.io/npm/l/@knekk/ripples.svg" alt="License"></a>
 </p>
 
-# Dev Components { Ripples }
+# Ripples
 
 Ripple effect which provides an "ink ripple" like effect to an interacted element. 
 Apply to any element with a simple setup.
@@ -21,7 +21,7 @@ Add the provided script in your HTML body element (or install via `npm`), and us
 
 ``` html
 <!-- Copy and paste the script below into the bottom of your HTML body element -->
-<script type="text/javascript" href="https://unpkg.com/@knekk/ripples@0.0.9/dist/ripples.js"></script>
+<script type="text/javascript" href="https://unpkg.com/@knekk/ripples@0.0.10/dist/ripples.js"></script>
 ```
 
 ### Vue.js
@@ -94,8 +94,8 @@ If you want the ripple effect to have a color transitioning effect when it 'ripp
 ```
 
 ## Looking for more?
-Dev Components
-* [{ Spinners }](https://github.com/knekki/spinners "Pure CSS Spinners by Kenneth Aamås")
+Mountable
+* [Spinners](https://github.com/knekki/spinners "Pure CSS Spinners by Kenneth Aamås")
 
 ## License
 

@@ -1,6 +1,6 @@
 {
   "name": "@knekk/ripples",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Ripple effect - Provides a 'ink ripple' like effect to an interacted element - Simple setup and usage.",
   "repository": {
     "type": "git",

@@ -102,6 +102,7 @@ export default class Ripple {
             borderRadius: '50%',
             background: self.getRippleColorLegibility(),
             backgroundColor: self.color,
+            boxShadow: `0 0 40px 0 ${ self.color }`,
             transform: 'scale(0)',
             transition: 'transform 300ms ease-out, opacity 300ms ease-out, background 300ms ease-in',
             willChange: 'transform, opacity'
@@ -112,7 +113,7 @@ export default class Ripple {
         this.appendChild(ripple);
         self.active.push(ripple);
         setTimeout(() => {
-            rippleEffect.style.transform = "scale(1)";
+            rippleEffect.style.transform = "scale(1.25)";
 
             // If 'ripple-out' is set, transition to color out
             if (self.color != self.colorOut) rippleEffect.style.backgroundColor = self.colorOut;
