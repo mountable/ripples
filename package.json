@@ -6,7 +6,7 @@
     "type": "git",
     "url": "git+https://github.com/mountable/ripples.git"
   },
-  "author": "Kenneth Aamås",
+  "author": "Kenneth Aamås (https://github.com/knekki)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mountable/ripples/issues"
