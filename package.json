@@ -1,17 +1,17 @@
 {
-  "name": "@knekk/ripples",
-  "version": "0.0.11",
+  "name": "@mountable/ripples",
+  "version": "0.0.12",
   "description": "Ripple effect - Provides a 'ink ripple' like effect to an interacted element - Simple setup and usage.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/knekki/ripples.git"
+    "url": "git+https://github.com/mountable/ripples.git"
   },
   "author": "Kenneth Aamås",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/knekki/ripples/issues"
+    "url": "https://github.com/mountable/ripples/issues"
   },
-  "homepage": "https://github.com/knekki/ripples#readme",
+  "homepage": "https://github.com/mountable/ripples#readme",
   "files": [
     "dist/*.js",
     "src"

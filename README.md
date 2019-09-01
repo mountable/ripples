@@ -1,7 +1,7 @@
 <p align="center">
-    <a href="https://npmcharts.com/compare/@knekk/ripples?minimal=true"><img src="https://img.shields.io/npm/dm/@knekk/ripples.svg" alt="Downloads"></a>
-    <a href="https://www.npmjs.com/package/@knekk/ripples"><img src="https://img.shields.io/npm/v/@knekk/ripples.svg" alt="Version"></a>
-    <a href="https://www.npmjs.com/package/@knekk/ripples"><img src="https://img.shields.io/npm/l/@knekk/ripples.svg" alt="License"></a>
+    <a href="https://npmcharts.com/compare/@mountable/ripples?minimal=true"><img src="https://img.shields.io/npm/dm/@mountable/ripples.svg" alt="Downloads"></a>
+    <a href="https://www.npmjs.com/package/@mountable/ripples"><img src="https://img.shields.io/npm/v/@mountable/ripples.svg" alt="Version"></a>
+    <a href="https://www.npmjs.com/package/@mountable/ripples"><img src="https://img.shields.io/npm/l/@mountable/ripples.svg" alt="License"></a>
 </p>
 
 # Ripples
@@ -21,7 +21,7 @@ Add the provided script in your HTML body element (or install via `npm`), and us
 
 ``` html
 <!-- Copy and paste the script below into the bottom of your HTML body element -->
-<script type="text/javascript" src="https://unpkg.com/@knekk/ripples@0.0.10/dist/ripples.js"></script>
+<script type="text/javascript" src="https://unpkg.com/@mountable/ripples@0.0.12/dist/ripples.js"></script>
 ```
 
 ### Vue.js
@@ -95,7 +95,7 @@ If you want the ripple effect to have a color transitioning effect when it 'ripp
 
 ## Looking for more?
 Mountable
-* [Spinners](https://github.com/knekki/spinners "Pure CSS Spinners by Kenneth Aamås")
+* [Spinners](https://github.com/mountable/spinners "Pure CSS Spinners by Kenneth Aamås")
 
 ## License
 
