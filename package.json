@@ -1,7 +1,7 @@
 {
   "name": "@mountable/ripples",
-  "version": "0.0.12",
-  "description": "Ripple effect - Provides a 'ink ripple' like effect to an interacted element - Simple setup and usage.",
+  "version": "0.0.13",
+  "description": "Ripple effect - Provides an «ink ripple» like effect to an interacted element.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mountable/ripples.git"
