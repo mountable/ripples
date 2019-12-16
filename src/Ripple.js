@@ -1,3 +1,5 @@
+import RippleRegister from './RippleRegister'
+
 export default class Ripple {
     constructor(element, { color, colorOut } = {}) {
         if (RippleRegister.has(element)) return RippleRegister.get(element);

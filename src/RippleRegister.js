@@ -1,6 +1,6 @@
 import Ripple from './Ripple'
 
-window.RippleRegister = new class RippleRegister extends Array {
+export default window.RippleRegister = new class RippleRegister extends Array {
     static get [Symbol.species]() { return Array }
 
     add(element, config) {
@@ -9,6 +9,13 @@ window.RippleRegister = new class RippleRegister extends Array {
         }
 
         return false;
+    }
+
+    /**
+     * Binds ripples to all elements with [data-ripple] attribute.
+     */
+    bindAll() {
+        document.body.querySelectorAll('[data-ripple]').forEach(el => new Ripple(el));
     }
     
     get(element) {

@@ -1,4 +1,4 @@
-import './RippleRegister'
+import RippleRegister from './RippleRegister'
 import Ripple from './Ripple'
 
 // Observe document for node insertions/removals of ripple instances
@@ -30,4 +30,14 @@ const observer = new MutationObserver((mutationsList) => {
 observer.observe(document.body, { attributes: true, childList: true, subtree: true });
 
 // Initally bind all ripples in document
-document.body.querySelectorAll('[data-ripple]').forEach(el => new Ripple(el));
+RippleRegister.bindAll();
+
+export default {
+    RippleRegister,
+    Ripple
+}
+
+export {
+    RippleRegister,
+    Ripple
+}
