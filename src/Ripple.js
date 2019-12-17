@@ -14,66 +14,94 @@ export default class Ripple {
         RippleRegister.push(this);
     }
 
+    /**
+     * Binding event listeners and styling for current `Ripple` element.
+     */
     bind() {
-        if (getComputedStyle(this.el)) {
-            if (getComputedStyle(this.el).getPropertyValue('position') == 'static') {
-                this.el.dataset.prevPosition = 'static';
+        const computedStyle = getComputedStyle(this.el);
+        if (computedStyle) {
+            if (computedStyle.getPropertyValue('position') == 'static') {
+                this.el.dataset.ripplePrevPosition = 'static';
                 this.el.style.position = 'relative';
             }
 
-            if (getComputedStyle(this.el).getPropertyValue('display') == 'inline') {
-                this.el.dataset.prevDisplay = 'inline';
+            if (computedStyle.getPropertyValue('display') == 'inline') {
+                this.el.dataset.ripplePrevDisplay = 'inline';
                 this.el.style.display = 'inline-block';
             }
         }
         
-        this.el.addEventListener('mousedown', this.show);
+        this.el.addEventListener('mousedown', this.show, { passive: true });
         this.el.addEventListener('touchstart', this.show, { passive: true });
-        this.el.addEventListener('touchend', this.hide, { passive: true });
-        this.el.addEventListener('touchcancel', this.hide);
-        this.el.addEventListener('mouseup', this.hide);
-        this.el.addEventListener('mouseleave', this.hide);
         this.el.addEventListener('dragstart', this.hide, { passive: true });
+        this.el.addEventListener('mouseup', this.hide, { passive: true });
+        this.el.addEventListener('mouseleave', this.hide, { passive: true });
+        this.el.addEventListener('touchend', this.hide, { passive: true });
+        this.el.addEventListener('touchcancel', this.hide, { passive: true });
     }
 
-    getRippleColorLegibility() {
-        if (getComputedStyle(this.el)) {
-            const rgb = getComputedStyle(this.el).getPropertyValue('background-color').match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
-            if (!rgb || (rgb[1] * 0.299 + rgb[2] * 0.587 + rgb[3] * 0.114) > 186) return '#000000';
-        }
-        
+    /**
+     * Gets the default contrasted ripple color (black/white) by ensuring color legebility depending on the `Ripple` element's background color.
+     */
+    get colorLegibility() {
+        const { backgroundColor } = getComputedStyle(this.el);
+        const rgb = backgroundColor.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+
+        if (!rgb || (rgb[1] * 0.299 + rgb[2] * 0.587 + rgb[3] * 0.114) > 186) return '#000000';
         return "#ffffff";
     }
 
+    /**
+     * Hides then destroys the `ripple-effect` element (the child element of the `Ripple` spawned for the effect).
+     */
     hide() {
-        const self = RippleRegister.get(this);
-        const ripple = self.active[self.active.length - 1];
-        if (!ripple) return;
-        
-        ripple.children[0].style.opacity = 0;
-        setTimeout(() => {
-            ripple.parentNode && ripple.parentNode.removeChild(ripple);
-            self.active.splice(self.active.indexOf(ripple), 1);
-        }, 300);
+        const { active } = RippleRegister.get(this);
+
+        if (active.length) {
+            const ripple = active[0];
+            ripple.children[0].style.opacity = 0;
+            active.splice(0, 1);
+
+            // Remove element from DOM
+            setTimeout(() => {
+                ripple.parentNode && ripple.parentNode.removeChild(ripple);
+            }, 300);
+        }
     }
 
+    /**
+     * Unregisters the `Ripple` element from `RippleRegister` and unbinds listeners.
+     */
     remove() {
         return RippleRegister.remove(this);
     }
-
+    
+    /**
+     * Sets the color of the ripple-effect.
+     * @param {*} color - The CSS `<color>` value.
+     */
     setColor(color) {
-        this.color = color || this.el.dataset.ripple || this.getRippleColorLegibility();
+        this.color = color || this.el.dataset.ripple || this.colorLegibility;
         return this.color;
     }
 
+    /**
+     * Sets the color of the ripple-effect when transitioning out.
+     * @param {*} color - The CSS `<color>` value.
+     */
     setColorOut(color) {
-        this.colorOut = color || this.el.dataset.rippleOut || this.color || this.getRippleColorLegibility();
+        this.colorOut = color || this.el.dataset.rippleOut || this.color || this.colorLegibility;
         return this.colorOut;
     }
 
+    /**
+     * Perform and render the ripple-effect for this `Ripple` element.
+     * @param {Event} event - The trigger `Event`
+     */
     show(event) {
         if (this.getAttribute('disabled') != null) return;
-        const self = RippleRegister.get(this);
+
+        const { active, color, colorOut, colorLegibility } = RippleRegister.get(this);
         const [{ offsetX, offsetY }, { width, height }] = [event, this.getBoundingClientRect()];
         const [x, y] = [Math.max(offsetX, width - offsetX), Math.max(offsetY, height - offsetY)];
         const circumRadius = Math.sqrt(Math.pow(Math.max(x, y), 2) + Math.pow(Math.min(x, y), 2));
@@ -102,9 +130,9 @@ export default class Ripple {
             height: `${ circumRadius * 2 }px`,
             width: `${ circumRadius * 2 }px`,
             borderRadius: '50%',
-            background: self.getRippleColorLegibility(),
-            backgroundColor: self.color,
-            boxShadow: `0 0 40px 0 ${ self.color }`,
+            background: colorLegibility,
+            backgroundColor: color,
+            boxShadow: `0 0 40px 0 ${ color }`,
             transform: 'scale(0)',
             transition: 'transform 300ms ease-out, opacity 300ms ease-out, background 300ms ease-in',
             willChange: 'transform, opacity'
@@ -113,23 +141,28 @@ export default class Ripple {
         // Append ripple
         ripple.appendChild(rippleEffect);
         this.appendChild(ripple);
-        self.active.push(ripple);
-        setTimeout(() => {
+        active.push(ripple);
+        requestAnimationFrame(() => {
             rippleEffect.style.transform = "scale(1.25)";
 
             // If 'ripple-out' is set, transition to color out
-            if (self.color != self.colorOut) rippleEffect.style.backgroundColor = self.colorOut;
-        }, 0);
+            if (color != colorOut) rippleEffect.style.backgroundColor = colorOut;
+        });
     }
 
+    /**
+     * Unbinding event listeners and resets styling for current `Ripple` element.
+     */
     unbind() {
-        if (this.el.dataset.prevPosition == 'static') {
-            this.el.dataset.prevPosition = undefined;
+        // Reset element's position property
+        if (this.el.dataset.ripplePrevPosition == 'static') {
+            this.el.removeAttribute('data-ripple-prev-position');
             this.el.style.position = 'static';
         }
 
-        if (this.el.dataset.prevDisplay == 'inline') {
-            this.el.dataset.prevDisplay = undefined;
+        // Reset element's display property
+        if (this.el.dataset.ripplePrevDisplay == 'inline') {
+            this.el.removeAttribute('data-ripple-prev-display');
             this.el.style.display = 'inline';
         }
 
