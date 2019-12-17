@@ -8,21 +8,27 @@ const observer = new MutationObserver((mutationsList) => {
             mutation.addedNodes.forEach(node => {
                 if (node.nodeType === 1) {
                     if (node.dataset.ripple != undefined) new Ripple(node);
-                    else node.querySelectorAll('[data-ripple]').forEach(ripple => new Ripple(ripple));
+                    else RippleRegister.bindAll(node);
                 }
             });
 
             mutation.removedNodes.forEach(node => {
                 if (node.nodeType === 1) {
                     if (RippleRegister.has(node)) RippleRegister.remove(node);
-                    else node.querySelectorAll('[data-ripple]').forEach(ripple => RippleRegister.has(ripple) && RippleRegister.remove(ripple));
+                    else RippleRegister.unbindAll(node);
                 }
             });
         }
 
-        else if (mutation.type == 'attributes') {
-            mutation.attributeName == 'data-ripple' && RippleRegister.has(mutation.target) && RippleRegister.get(mutation.target).setColor(mutation.target.dataset.ripple);
-            mutation.attributeName == 'data-ripple-out' && RippleRegister.has(mutation.target) && RippleRegister.get(mutation.target).setColorOut(mutation.target.dataset.rippleOut);
+        // Update ripple colors
+        else if (mutation.type == 'attributes' && RippleRegister.has(mutation.target)) {
+            if (mutation.attributeName == 'data-ripple') {
+                RippleRegister.get(mutation.target).color = mutation.target.dataset.ripple;
+            }
+
+            if (mutation.attributeName == 'data-ripple-out') {
+                RippleRegister.get(mutation.target).colorOut = mutation.target.dataset.rippleOut;
+            }
         }
     }
 });

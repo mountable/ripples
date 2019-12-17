@@ -7,25 +7,24 @@ export default window.RippleRegister = new class RippleRegister extends Array {
      * Add element to the `RippleRegister` (if not already existing).
      * @param {Ripple|HTMLElement} element - The element to register.
      * @param {Object} config - The `Ripple` configuration object.
+     * 
      */
     add(element, config) {
-        if (!this.has(element)) {
-            return new Ripple(element, config);
-        }
-
-        return false;
+        return new Ripple(element, config);
     }
 
     /**
      * Binds a new `Ripple` to all elements with [data-ripple] attribute. Elements that are already bound with a `Ripple`, are skipped.
+     * @param {HTMLElement} node - The node used for the query selecting from. Using `document.body` as default.
      */
-    bindAll() {
-        document.body.querySelectorAll('[data-ripple]').forEach(el => new Ripple(el));
+    bindAll(node = document.body) {
+        node.querySelectorAll('[data-ripple]').forEach(el => this.add(el));
     }
     
     /**
      * Get the registered `Ripple` instance of the provided element.
      * @param {Ripple|HTMLElement} element - The element to retrieve the `Ripple` instance for.
+     * @returns {Ripple} The `Ripple` instance if found.
      */
     get(element) {
         return this.find(ripple => element instanceof Ripple ? ripple === element : ripple.el === element);
@@ -53,5 +52,13 @@ export default window.RippleRegister = new class RippleRegister extends Array {
         }
 
         return false;
+    }
+
+    /**
+     * Unbinds all `Ripple` elements with [data-ripple] attribute.
+     * @param {HTMLElement} node - The node used for the query selecting from. Using `document.body` as default.
+     */
+    unbindAll(node = document.body) {
+        node.querySelectorAll('[data-ripple]').forEach(el => this.remove(el));
     }
 }
